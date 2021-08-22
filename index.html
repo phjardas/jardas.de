@@ -7,7 +7,6 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -17,8 +16,14 @@
     <style>
       body {
         background: white;
+        --color: hsl(320, 100%, 30%);
+        --shadow: hsla(320, 100%, 30%, 25%);
         margin: 0;
         padding: 0;
+      }
+
+      a {
+        color: var(--color);
       }
 
       .page {
@@ -34,10 +39,11 @@
       .portrait {
         border-radius: 50%;
         width: 10rem;
+        box-shadow: 3px 3px 20px var(--shadow);
       }
 
       h1 {
-        color: rgba(0, 0, 0, 0.6);
+        color: var(--color);
         font-family: "Caveat", cursive;
         margin: 1rem;
         font-size: 3rem;
@@ -92,6 +98,18 @@
       }
     </style>
   </head>
+  <script>
+    var hue = 320;
+
+    setInterval(() => {
+      document.body.style.setProperty("--color", `hsl(${hue}, 100%, 30%)`);
+      document.body.style.setProperty(
+        "--shadow",
+        `hsla(${hue}, 100%, 30%, 25%)`
+      );
+      hue = (hue + 1) % 360;
+    }, 500);
+  </script>
   <body>
     <div class="page">
       <div class="info">
