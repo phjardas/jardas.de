@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Philipp Jardas</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .page {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: hidden;
+        background: white;
+      }
+
+      .bg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        transform: translateX(-50%) translateY(-50%);
+        z-index: 1;
+      }
+
+      .bg img {
+        width: 100%;
+      }
+
+      .info {
+        position: absolute;
+        z-index: 2;
+        top: 10rem;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        display: flex;
+        align-items: center;
+      }
+
+      .portrait {
+        border-radius: 50%;
+        width: 15rem;
+      }
+
+      h1 {
+        color: rgba(0, 0, 0, 0.6);
+        font-family: "Caveat", cursive;
+        margin-left: 3rem;
+        font-size: 5rem;
+      }
+
+      .contact {
+        position: absolute;
+        z-index: 2;
+        bottom: 10rem;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        display: flex;
+        align-items: baseline;
+        font-family: sans-serif;
+        font-size: small;
+        color: rgba(0, 0, 0, 0.75);
+      }
+
+      .contact a {
+        margin-left: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <picture class="bg" alt="Background">
+        <source type="image/avif" srcset="bg.avif" />
+        <source type="image/webp" srcset="bg.webp" />
+        <img src="bg.jpg" />
+      </picture>
+      <div class="info">
+        <img
+          src="portrait.jpg"
+          alt="Portrait of yours truly"
+          class="portrait"
+        />
+        <h1>Hi, I'm Philipp!</h1>
+      </div>
+      <div class="contact">
+        Contact me:
+        <a href="mailto:philipp@jardas.de">philipp@jardas.de</a>
+        <a href="https://www.xing.com/profile/Philipp_Jardas">XING</a>
+        <a href="http://de.linkedin.com/in/philippjardas">LinkedIn</a>
+        <a href="https://github.com/phjardas">GitHub</a>
+        <a href="http://stackoverflow.com/users/469029/philipp-jardas">
+          Stack Overflow
+        </a>
+        <a href="http://twitter.com/phjardas">Twitter</a>
+      </div>
+    </div>
+  </body>
+</html>
