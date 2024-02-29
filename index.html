@@ -1,32 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>Philipp Jardas</title>
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Caveat&display=swap"
-      rel="stylesheet"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet"/>
     <style>
       body {
-        background: white;
         --color: hsl(320, 100%, 30%);
+        background: linear-gradient(217deg, rgba(255,0,0,.5), rgba(255,0,0,0) 70.71%), linear-gradient(127deg, rgba(0,255,0,.5), rgba(0,255,0,0) 70.71%), linear-gradient(336deg, rgba(0,0,255,.5), rgba(0,0,255,0) 70.71%);
         margin: 0;
         padding: 0;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
 
       a {
         color: var(--color);
-      }
-
-      .page {
-        margin: 3rem 2rem;
       }
 
       .info {
@@ -38,7 +32,7 @@
       .portrait {
         border-radius: 50%;
         width: 10rem;
-        border: 5px solid var(--color);
+        height: auto;
       }
 
       h1 {
@@ -77,11 +71,6 @@
       }
 
       @media (min-width: 768px) {
-        .page {
-          width: calc(768px - 4rem);
-          margin: 5rem auto 0;
-        }
-
         .portrait {
           width: 15rem;
         }
@@ -100,32 +89,25 @@
   <script>
     var hue = 320;
 
-    setInterval(() => {
-      document.body.style.setProperty("--color", `hsl(${hue}, 100%, 30%)`);
-      document.body.style.setProperty(
-        "--shadow",
-        `hsla(${hue}, 100%, 30%, 25%)`
-      );
+    setInterval(function () {
+      document
+        .body
+        .style
+        .setProperty("--color", `hsl(${hue}, 100%, 30%)`);
       hue = (hue + 1) % 360;
     }, 500);
   </script>
   <body>
     <div class="page">
       <div class="info">
-        <img
-          src="portrait.jpg"
-          alt="Portrait of yours truly"
-          class="portrait"
-        />
+        <img src="portrait.avif" alt="Portrait of yours truly" width="250" height="250" class="portrait"/>
         <h1>Hi, I'm Philipp!</h1>
       </div>
       <div class="contact">
         Contact me:
         <a href="mailto:philipp@jardas.de">philipp@jardas.de</a>
-        <a href="https://www.xing.com/profile/Philipp_Jardas">XING</a>
         <a href="http://de.linkedin.com/in/philippjardas">LinkedIn</a>
         <a href="https://github.com/phjardas">GitHub</a>
-        <a href="http://twitter.com/phjardas">Twitter</a>
       </div>
     </div>
   </body>
