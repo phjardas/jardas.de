@@ -5,11 +5,13 @@
     <title>Philipp Jardas</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sedan:ital@0;1&display=swap" rel="stylesheet">
     <style>
       body {
-        --color: hsl(320, 100%, 30%);
+        --hue: 320;
+        --color: hsl(var(--hue) 100% 30%);
         background: linear-gradient(217deg, rgba(255,0,0,.5), rgba(255,0,0,0) 70.71%), linear-gradient(127deg, rgba(0,255,0,.5), rgba(0,255,0,0) 70.71%), linear-gradient(336deg, rgba(0,0,255,.5), rgba(0,0,255,0) 70.71%);
         margin: 0;
         padding: 0;
@@ -20,7 +22,15 @@
       }
 
       a {
-        color: var(--color);
+        color: hsl(var(--hue) 100% 30%);
+        text-underline-offset: 5px;
+        text-decoration-thickness: 0.5px;
+        transition: color 0.2s, text-decoration-thickness 0.2s;
+
+        &:hover {
+          color: hsl(var(--hue) 100% 40%);
+          text-decoration-thickness: 1px;
+        }
       }
 
       .info {
@@ -30,16 +40,31 @@
       }
 
       .portrait {
+        border: 4px solid white;
         border-radius: 50%;
         width: 10rem;
         height: auto;
+        z-index: 1;
+        box-shadow: rgba(0, 0, 0, 0.2) 0 2px 4px -1px, rgba(0, 0, 0, 0.14) 0 4px 5px 0px, rgba(0, 0, 0, 0.12) 0 1px 10px 0;
+      }
+
+      .info-card {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        background: rgba(255, 255, 255, 0.5);
+        border: 4px solid white;
+        border-radius: 16px;
+        padding: 4rem 4rem 2rem;
+        margin-top: -3rem;
+        box-shadow: rgba(0, 0, 0, 0.2) 0 2px 4px -1px, rgba(0, 0, 0, 0.14) 0 4px 5px 0px, rgba(0, 0, 0, 0.12) 0 1px 10px 0;
       }
 
       h1 {
         color: var(--color);
-        font-family: "Caveat", cursive;
-        margin: 1rem;
-        font-size: 3rem;
+        font-family: "Sedan", serif;
+        margin: 0;
+        font-size: 2rem;
         text-align: center;
       }
 
@@ -48,40 +73,37 @@
         flex-direction: column;
         font-family: sans-serif;
         color: rgba(0, 0, 0, 0.75);
-        margin-top: 2rem;
         text-align: center;
         line-height: 1.5;
+        gap: 0.5rem;
       }
 
-      @media (min-width: 576px) {
+      @media (min-width: 768px) {
         .info {
           flex-direction: row;
           justify-content: center;
         }
 
-        .contact {
-          flex-direction: row;
-          align-items: baseline;
-          justify-content: center;
-        }
-
-        .contact a {
-          margin-left: 0.5rem;
-        }
-      }
-
-      @media (min-width: 768px) {
         .portrait {
           width: 15rem;
         }
 
+        .info-card {
+          margin-top: 0;
+          margin-left: -6rem;
+          padding-top: 2rem;
+          padding-left: 8rem;
+          gap: 1rem;
+        }
+
         h1 {
-          margin-left: 3rem;
-          font-size: 5rem;
+          font-size: 3rem;
+          text-align: left;
         }
 
         .contact {
-          margin-top: 5rem;
+          flex-direction: row;
+          gap: 0.5rem;
         }
       }
     </style>
@@ -93,7 +115,7 @@
       document
         .body
         .style
-        .setProperty("--color", `hsl(${hue}, 100%, 30%)`);
+        .setProperty("--hue", hue);
       hue = (hue + 1) % 360;
     }, 500);
   </script>
@@ -101,14 +123,16 @@
     <div class="page">
       <div class="info">
         <img src="portrait.avif" alt="Portrait of yours truly" width="250" height="250" class="portrait"/>
-        <h1>Hi, I'm Philipp!</h1>
-      </div>
-      <div class="contact">
-        Contact me:
-        <a href="mailto:philipp@jardas.de">philipp@jardas.de</a>
-        <a href="http://de.linkedin.com/in/philippjardas">LinkedIn</a>
-        <a href="https://www.malt.de/profile/philippjardas">Malt</a>
-        <a href="https://github.com/phjardas">GitHub</a>
+        <div class="info-card">
+          <h1>Hi, I'm Philipp!</h1>
+          <div class="contact">
+            Contact me:
+            <a href="mailto:philipp@jardas.de">philipp@jardas.de</a>
+            <a href="http://de.linkedin.com/in/philippjardas">LinkedIn</a>
+            <a href="https://www.malt.de/profile/philippjardas">Malt</a>
+            <a href="https://github.com/phjardas">GitHub</a>
+          </div>
+        </div>
       </div>
     </div>
   </body>
