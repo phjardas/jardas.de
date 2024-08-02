@@ -9,10 +9,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sedan:ital@0;1&display=swap" rel="stylesheet">
     <style>
+      :root {
+        color-scheme: light dark;
+        background: light-dark(white, rgba(0, 0, 0, .5));
+      }
+
       body {
         --hue: 320;
-        --color: hsl(var(--hue) 100% 30%);
-        background: linear-gradient(217deg, rgba(255,0,0,.5), rgba(255,0,0,0) 70.71%), linear-gradient(127deg, rgba(0,255,0,.5), rgba(0,255,0,0) 70.71%), linear-gradient(336deg, rgba(0,0,255,.5), rgba(0,0,255,0) 70.71%);
+        --color: light-dark(hsl(var(--hue) 100% 30%), hsl(var(--hue) 50% 70%));
+        --hover-color: light-dark(hsl(var(--hue) 100% 40%), hsl(var(--hue) 50% 80%));
+        --border-color: light-dark(white, hsl(var(--hue) 20% 30%));
+        background: linear-gradient(217deg, rgba(255, 0, 0, .5), rgba(255, 0, 0, 0) 70.71%), linear-gradient(127deg, rgba(0,255,0,.5), rgba(0,255,0,0) 70.71%), linear-gradient(336deg, rgba(0,0,255,.5), rgba(0,0,255,0) 70.71%);
         margin: 0;
         padding: 0;
         min-height: 100vh;
@@ -22,13 +29,13 @@
       }
 
       a {
-        color: hsl(var(--hue) 100% 30%);
+        color: var(--color);
         text-underline-offset: 5px;
         text-decoration-thickness: 0.5px;
         transition: color 0.2s, text-decoration-thickness 0.2s;
 
         &:hover {
-          color: hsl(var(--hue) 100% 40%);
+          color: var(--hover-color);
           text-decoration-thickness: 1px;
         }
       }
@@ -40,7 +47,7 @@
       }
 
       .portrait {
-        border: 4px solid white;
+        border: 4px solid var(--border-color);
         border-radius: 50%;
         width: 10rem;
         height: auto;
@@ -52,8 +59,8 @@
         display: flex;
         flex-direction: column;
         gap: 2rem;
-        background: rgba(255, 255, 255, 0.5);
-        border: 4px solid white;
+        background: light-dark(rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.5));
+        border: 4px solid var(--border-color);
         border-radius: 16px;
         padding: 4rem 4rem 2rem;
         margin-top: -3rem;
@@ -72,10 +79,9 @@
         display: flex;
         flex-direction: column;
         font-family: sans-serif;
-        color: rgba(0, 0, 0, 0.75);
         text-align: center;
         line-height: 1.5;
-        gap: 0.5rem;
+        gap: 1rem;
       }
 
       @media (min-width: 768px) {
@@ -103,7 +109,6 @@
 
         .contact {
           flex-direction: row;
-          gap: 0.5rem;
         }
       }
     </style>
@@ -126,10 +131,8 @@
         <div class="info-card">
           <h1>Hi, I'm Philipp!</h1>
           <div class="contact">
-            Contact me:
             <a href="mailto:philipp@jardas.de">philipp@jardas.de</a>
             <a href="http://de.linkedin.com/in/philippjardas">LinkedIn</a>
-            <a href="https://www.malt.de/profile/philippjardas">Malt</a>
             <a href="https://github.com/phjardas">GitHub</a>
           </div>
         </div>
