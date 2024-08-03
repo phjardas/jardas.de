@@ -5,7 +5,6 @@
     <title>Philipp Jardas</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sedan:ital@0;1&display=swap" rel="stylesheet">
     <style>
@@ -19,7 +18,7 @@
         --color: light-dark(hsl(var(--hue) 100% 30%), hsl(var(--hue) 50% 70%));
         --hover-color: light-dark(hsl(var(--hue) 100% 40%), hsl(var(--hue) 50% 80%));
         --border-color: light-dark(white, hsl(var(--hue) 20% 30%));
-        background: linear-gradient(217deg, rgba(255, 0, 0, .5), rgba(255, 0, 0, 0) 70.71%), linear-gradient(127deg, rgba(0,255,0,.5), rgba(0,255,0,0) 70.71%), linear-gradient(336deg, rgba(0,0,255,.5), rgba(0,0,255,0) 70.71%);
+        background: linear-gradient(217deg, hsla(var(--hue), 100%, 30%, .5), hsla(var(--hue), 100%, 30%, 0) 70%), linear-gradient(127deg, hsla(calc(mod(var(--hue) + 120, 360)), 100%, 30%, .5), hsla(calc(mod(var(--hue) + 120, 360)), 100%, 30%, 0) 70%), linear-gradient(363deg, hsla(calc(mod(var(--hue) + 240, 360)), 100%, 30%, .5), hsla(calc(mod(var(--hue) + 240, 360)), 100%, 30%, 0) 70%);
         margin: 0;
         padding: 0;
         min-height: 100vh;
@@ -114,15 +113,18 @@
     </style>
   </head>
   <script>
-    var hue = 320;
+    function animateHue() {
+      var hue = 320;
+      return() => {
+        hue = (hue + 1) % 360;
+        document
+          .body
+          .style
+          .setProperty("--hue", hue);
+      }
+    }
 
-    setInterval(function () {
-      document
-        .body
-        .style
-        .setProperty("--hue", hue);
-      hue = (hue + 1) % 360;
-    }, 500);
+    setInterval(animateHue(), 50);
   </script>
   <body>
     <div class="page">
