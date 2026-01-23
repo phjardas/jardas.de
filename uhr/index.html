@@ -1,0 +1,18 @@
+<!doctype html>
+<title>Uhr</title>
+
+<div style="width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center;">
+    <div id="clock" style="font-family: sans-serif; font-size: clamp(1rem, 20vw, 10rem); font-weight: bold;"></div>
+</div>
+
+<script>
+    const clock = document.getElementById("clock");
+
+    function update() {
+        const now = new Date();
+        clock.textContent = now.toLocaleTimeString("de-DE");
+    }
+
+    update();
+    setInterval(update, 1000);
+</script>
