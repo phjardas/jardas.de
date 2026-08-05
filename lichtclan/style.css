@@ -1,0 +1,454 @@
+/* Die Chronik des Lichtclans — shared styles
+   Signature: chapter badges and section dividers are cropped from
+   Tabea's own notebook margins (a sunburst page-mark, a trail of
+   pencil pawprints) rather than drawn generic icons. */
+
+@import url("https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,7..72,400&family=Inter:wght@400;500;600;700&display=swap");
+
+:root {
+  --paper: #f1e6c8;
+  --paper-deep: #e4d3a4;
+  --paper-edge: #d3bd83;
+  --ink: #241f16;
+  --ink-soft: #4a4130;
+  --pine: #2e4a3a;
+  --pine-deep: #1d3129;
+  --ember: #9c3b26;
+  --moonlight: #58708a;
+
+  --display: "IM Fell English", "Iowan Old Style", Georgia, serif;
+  --display-sc: "IM Fell English SC", "IM Fell English", Georgia, serif;
+  --body: "Literata", Georgia, "Times New Roman", serif;
+  --utility: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  background-image: radial-gradient(
+      ellipse at top left,
+      rgba(255, 255, 255, 0.35),
+      transparent 55%
+    ),
+    repeating-linear-gradient(
+      transparent,
+      transparent 37px,
+      rgba(46, 74, 58, 0.06) 38px
+    );
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: var(--ember);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--moonlight);
+  outline-offset: 3px;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ---------- layout shell ---------- */
+
+.site-header,
+.site-footer {
+  background: var(--pine);
+  color: var(--paper);
+  position: relative;
+}
+
+.site-header::after,
+.site-footer::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(
+    90deg,
+    var(--pine-deep),
+    var(--ember) 20%,
+    var(--pine-deep) 40%,
+    var(--moonlight) 60%,
+    var(--pine-deep) 80%,
+    var(--ember)
+  );
+  opacity: 0.55;
+}
+
+.site-header::after {
+  bottom: 0;
+}
+
+.site-footer::before {
+  top: 0;
+}
+
+.header-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 2.75rem 1.5rem 2.25rem;
+  text-align: center;
+}
+
+.eyebrow {
+  font-family: var(--utility);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--paper-deep);
+  opacity: 0.85;
+}
+
+.site-title {
+  font-family: var(--display-sc);
+  font-weight: 400;
+  font-size: clamp(2.1rem, 7vw, 3.2rem);
+  letter-spacing: 0.02em;
+  margin: 0.4rem 0 0.6rem;
+  line-height: 1.1;
+}
+
+.site-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-tagline {
+  font-family: var(--utility);
+  font-size: 0.95rem;
+  color: var(--paper);
+  opacity: 0.85;
+  margin: 0;
+}
+
+.breadcrumb {
+  font-family: var(--utility);
+  font-size: 0.85rem;
+  margin: 0 0 0.5rem;
+}
+
+.breadcrumb a {
+  color: var(--paper);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(241, 230, 200, 0.45);
+}
+
+.breadcrumb a:hover {
+  border-color: var(--paper);
+}
+
+main {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* ---------- archive (index) ---------- */
+
+.archive-intro {
+  font-family: var(--utility);
+  color: var(--ink-soft);
+  max-width: 54ch;
+  margin: 2.5rem auto 2rem;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.archive-list {
+  list-style: none;
+  margin: 0 0 3rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.chapter-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+  align-items: start;
+  background: var(--paper-deep);
+  border: 1px solid var(--paper-edge);
+  border-radius: 4px;
+  padding: 1.25rem 1.4rem;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 1px 0 rgba(36, 31, 22, 0.05);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.chapter-card:hover,
+.chapter-card:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px -10px rgba(29, 49, 41, 0.45);
+}
+
+.chapter-card .badge {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--paper);
+  border: 1px solid var(--paper-edge);
+  flex-shrink: 0;
+}
+
+.chapter-card .badge img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.5);
+}
+
+.chapter-card .kicker {
+  display: block;
+  font-family: var(--utility);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pine);
+  margin-bottom: 0.15rem;
+}
+
+.chapter-card h2 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 1.6rem;
+  margin: 0 0 0.35rem;
+  color: var(--ink);
+}
+
+.chapter-card p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+
+.chapter-card.upcoming {
+  background: transparent;
+  border-style: dashed;
+  opacity: 0.75;
+}
+
+.chapter-card.upcoming .badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--display);
+  color: var(--paper-edge);
+  font-size: 1.6rem;
+}
+
+/* ---------- chapter page ---------- */
+
+.chapter-header {
+  text-align: center;
+}
+
+.chapter-badge {
+  width: 84px;
+  height: 84px;
+  margin: 0 auto 0.75rem;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(241, 230, 200, 0.55);
+  background: var(--pine-deep);
+}
+
+.chapter-badge img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.55);
+}
+
+.chapter-kicker {
+  font-family: var(--utility);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--paper-deep);
+  opacity: 0.9;
+  margin: 0 0 0.3rem;
+}
+
+.chapter-title {
+  font-family: var(--display-sc);
+  font-weight: 400;
+  font-size: clamp(2rem, 8vw, 2.9rem);
+  margin: 0 0 0.5rem;
+}
+
+.chapter-byline {
+  font-family: var(--utility);
+  font-size: 0.85rem;
+  color: var(--paper);
+  opacity: 0.8;
+  margin: 0;
+}
+
+.story {
+  padding: 2.5rem 0 1rem;
+}
+
+.story p {
+  margin: 0 0 1.35rem;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.dropcap {
+  font-family: var(--display);
+  font-size: 3.6rem;
+  line-height: 0.78;
+  float: left;
+  padding: 0.08em 0.1em 0 0;
+  color: var(--ember);
+}
+
+.scene-break {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2.25rem 0;
+}
+
+.scene-break img {
+  height: 30px;
+  width: auto;
+  opacity: 0.8;
+  filter: sepia(15%) saturate(85%);
+}
+
+/* doodle figures pulled from the notebook margins */
+
+.doodle {
+  margin: 0 0 1.5rem;
+  background: var(--paper-deep);
+  border: 1px solid var(--paper-edge);
+  padding: 0.5rem 0.5rem 0.65rem;
+  border-radius: 2px;
+  box-shadow: 0 6px 14px -10px rgba(36, 31, 22, 0.4);
+}
+
+.doodle img {
+  border: 1px solid rgba(36, 31, 22, 0.12);
+}
+
+.doodle figcaption {
+  font-family: var(--utility);
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  text-align: center;
+  padding-top: 0.5rem;
+  font-style: italic;
+}
+
+@media (min-width: 700px) {
+  .doodle {
+    width: 240px;
+  }
+
+  .doodle--right {
+    float: right;
+    margin: 0.25rem 0 1rem 1.75rem;
+  }
+
+  .doodle--left {
+    float: left;
+    margin: 0.25rem 1.75rem 1rem 0;
+  }
+
+  .doodle--right.tilt {
+    transform: rotate(2.5deg);
+  }
+
+  .doodle--left.tilt {
+    transform: rotate(-2.5deg);
+  }
+}
+
+.doodle--feature {
+  width: 100%;
+  margin: 2.5rem 0;
+}
+
+.chapter-end {
+  text-align: center;
+  font-family: var(--utility);
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  margin: 1.5rem 0 3rem;
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-family: var(--utility);
+  font-size: 0.85rem;
+  padding: 1.5rem 1.25rem 2.5rem;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.chapter-nav a,
+.chapter-nav span {
+  text-decoration: none;
+  color: var(--pine);
+  border-bottom: 1px solid transparent;
+}
+
+.chapter-nav a:hover {
+  border-color: var(--pine);
+}
+
+.chapter-nav .disabled {
+  color: var(--ink-soft);
+  opacity: 0.6;
+}
+
+.site-footer {
+  margin-top: auto;
+}
+
+.footer-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 1.75rem 1.5rem;
+  text-align: center;
+  font-family: var(--utility);
+  font-size: 0.8rem;
+  opacity: 0.85;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chapter-card {
+    transition: none;
+  }
+}
