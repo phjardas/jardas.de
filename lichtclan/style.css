@@ -397,6 +397,33 @@ main {
   margin: 2.5rem 0;
 }
 
+.doodle-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 1.25rem;
+  margin: 2.5rem 0;
+}
+
+.doodle-row .doodle {
+  width: 150px;
+  min-width: 0;
+  margin: 0;
+}
+
+.doodle-row .doodle:nth-child(1) {
+  transform: rotate(-2deg);
+}
+
+.doodle-row .doodle:nth-child(2) {
+  transform: rotate(1.5deg);
+}
+
+.doodle-row .doodle:nth-child(3) {
+  transform: rotate(-1deg);
+}
+
 .chapter-end {
   text-align: center;
   font-family: var(--utility);
