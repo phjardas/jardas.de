@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Talks — Philipp Jardas</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sedan:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: light dark;
+      }
+
+      body {
+        --hue: 320;
+        --color: light-dark(hsl(var(--hue) 100% 30%), hsl(var(--hue) 50% 70%));
+        --hover-color: light-dark(
+          hsl(var(--hue) 100% 40%),
+          hsl(var(--hue) 50% 80%)
+        );
+        --border-color: light-dark(#e3e3e3, hsl(var(--hue) 20% 25%));
+        --bg: light-dark(white, #111);
+        --bg-alt: light-dark(#faf8fb, #181818);
+        background: var(--bg);
+        color: light-dark(#1a1a1a, #eee);
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        line-height: 1.6;
+      }
+
+      a {
+        color: var(--color);
+        text-underline-offset: 3px;
+        text-decoration-thickness: 0.5px;
+        transition: color 0.2s;
+      }
+
+      a:hover {
+        color: var(--hover-color);
+      }
+
+      h1,
+      h2 {
+        font-family: "Sedan", serif;
+        color: var(--color);
+      }
+
+      .page {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 3rem 1.5rem 5rem;
+      }
+
+      header {
+        margin-bottom: 3.5rem;
+      }
+
+      .back-link {
+        display: inline-block;
+        margin-bottom: 1.5rem;
+        font-size: 0.9rem;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin: 0 0 1.5rem;
+      }
+
+      .intro {
+        display: flex;
+        gap: 1.5rem;
+        align-items: flex-start;
+      }
+
+      .intro-portrait {
+        width: 6rem;
+        height: 6rem;
+        border-radius: 50%;
+        border: 3px solid var(--border-color);
+        flex-shrink: 0;
+      }
+
+      .intro p {
+        margin: 0 0 1rem;
+      }
+
+      .intro p:last-child {
+        margin-bottom: 0;
+      }
+
+      @media (max-width: 480px) {
+        .intro {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+      }
+
+      .talks {
+        display: flex;
+        flex-direction: column;
+        gap: 3.5rem;
+      }
+
+      .talk {
+        border: 1px solid var(--border-color);
+        border-radius: 16px;
+        overflow: hidden;
+        background: var(--bg-alt);
+      }
+
+      .talk-image {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        display: block;
+      }
+
+      .talk-body {
+        padding: 1.5rem 1.75rem 1.75rem;
+      }
+
+      .talk-langs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.75rem;
+      }
+
+      @media (max-width: 600px) {
+        .talk-langs {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .lang-block h3 {
+        font-family: sans-serif;
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: light-dark(#888, #888);
+        margin: 0 0 0.5rem;
+        font-weight: 600;
+      }
+
+      .lang-block h2 {
+        font-size: 1.3rem;
+        line-height: 1.25;
+        margin: 0 0 0.25rem;
+      }
+
+      .lang-block .subtitle {
+        margin: 0 0 0.75rem;
+        font-style: italic;
+        font-size: 0.9rem;
+        color: light-dark(#555, #aaa);
+      }
+
+      .lang-block p:last-child {
+        margin: 0;
+        font-size: 0.95rem;
+      }
+
+      footer {
+        margin-top: 4rem;
+        font-size: 0.9rem;
+        text-align: center;
+        color: light-dark(#777, #999);
+      }
+
+      .footer-langs {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.4rem 2rem;
+      }
+
+      .footer-langs p {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <script>
+    function animateHue() {
+      var hue = 320;
+      return () => {
+        hue = (hue + 1) % 360;
+        document.body.style.setProperty("--hue", hue);
+      };
+    }
+
+    setInterval(animateHue(), 50);
+  </script>
+  <body>
+    <div class="page">
+      <header>
+        <a class="back-link" href="../">← Philipp Jardas</a>
+        <h1>Talks</h1>
+        <div class="intro">
+          <img
+            class="intro-portrait"
+            src="../portrait.avif"
+            alt="Portrait of Philipp Jardas"
+          />
+          <div class="talk-langs">
+            <div class="lang-block">
+              <h3>English</h3>
+              <p>
+                I'm Philipp, a Lead Software Engineer at
+                <a href="https://codecentric.de/">codecentric</a> with a soft
+                spot for cloud-native, full-stack systems. I'm also a
+                quadruple-dad, a volunteer firefighter, and a trainer for
+                Nonviolent Communication, and that mix keeps finding its way
+                back into how I think about resilient software and calm
+                leadership under pressure.
+              </p>
+              <p>
+                I regularly speak at meetups and conferences on topics spanning
+                software architecture, security, testing, accessibility and
+                inclusion, and what engineering teams can learn from high-stakes
+                professions. Below is a selection of my talks. Each one can be
+                delivered in German or English.
+              </p>
+            </div>
+            <div class="lang-block">
+              <h3>Deutsch</h3>
+              <p>
+                Ich bin Philipp, Lead Software Engineer bei
+                <a href="https://codecentric.de/">codecentric</a> mit einer
+                Vorliebe für cloud-native Full-Stack-Systeme. Außerdem bin ich
+                vierfacher Vater, freiwilliger Feuerwehrmann und Trainer für
+                Gewaltfreie Kommunikation. Diese Mischung fließt immer wieder in
+                mein Denken über robuste Software und ruhige Führung unter Druck
+                ein.
+              </p>
+              <p>
+                Ich spreche regelmäßig auf Meetups und Konferenzen zu Themen wie
+                Softwarearchitektur, Sicherheit, Testing, Barrierefreiheit und
+                Inklusion sowie dazu, was Engineering-Teams von Berufen mit
+                hohem Risiko lernen können. Im Folgenden findet ihr eine Auswahl
+                meiner Vorträge. Jeder davon kann auf Deutsch oder Englisch
+                gehalten werden.
+              </p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="talks">
+        <section class="talk">
+          <img
+            class="talk-image"
+            src="images/digitale-souveraenitaet.webp"
+            alt="Title slide of the talk Digital Sovereignty"
+          />
+          <div class="talk-body">
+            <div class="talk-langs">
+              <div class="lang-block">
+                <h3>English</h3>
+                <h2>Digital Sovereignty</h2>
+                <p class="subtitle">Architecture for an uncertain future</p>
+                <p>
+                  Every architecture decision is a bet on how the future will
+                  behave: that a vendor stays available, that an API stays
+                  stable, that prices stay predictable. This talk argues that
+                  changeability, not just cost and performance, should be a
+                  first-class criterion in architecture decisions, and
+                  introduces a model of four levers (operations, data, access,
+                  and updates) for identifying and managing the dependencies
+                  that quietly take away your ability to act.
+                </p>
+              </div>
+              <div class="lang-block">
+                <h3>Deutsch</h3>
+                <h2>Digitale Souveränität</h2>
+                <p class="subtitle">Architektur für eine ungewisse Zukunft</p>
+                <p>
+                  Jede Architekturentscheidung ist eine Wette auf die Zukunft:
+                  darauf, dass ein Anbieter verfügbar bleibt, APIs stabil
+                  bleiben und Preise kalkulierbar sind. Der Vortrag plädiert
+                  dafür, Änderbarkeit neben Kosten und Performance als zentrales
+                  Kriterium bei Architekturentscheidungen zu behandeln, und
+                  stellt ein Modell aus vier Hebeln vor (Betrieb, Daten, Zugriff
+                  und Updates), um kritische Abhängigkeiten zu erkennen und
+                  bewusst zu steuern.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="talk">
+          <img
+            class="talk-image"
+            src="images/10x-produktiver.webp"
+            alt="Title slide of the talk 10x more productive, 10x more exhausted"
+          />
+          <div class="talk-body">
+            <div class="talk-langs">
+              <div class="lang-block">
+                <h3>English</h3>
+                <h2>10x More Productive, 10x More Exhausted</h2>
+                <p class="subtitle">How we survive the age of agentic coding</p>
+                <p>
+                  AI coding agents promise a tenfold increase in throughput, but
+                  the pace strains the team's cognitive capacity. This talk
+                  borrows principles from air traffic control, such as sector
+                  design, sterile cockpit, and dual-channel review, and applies
+                  them to software development, showing how teams can stay
+                  productive with AI agents without burning out.
+                </p>
+              </div>
+              <div class="lang-block">
+                <h3>Deutsch</h3>
+                <h2>10× produktiver, 10× erschöpfter</h2>
+                <p class="subtitle">
+                  Wie wir die Ära des agentischen Codens überleben
+                </p>
+                <p>
+                  KI-Coding-Agenten versprechen zehnfachen Durchsatz, doch mit
+                  dem Tempo wächst die kognitive Belastung im Team. Der Vortrag
+                  überträgt Prinzipien aus der Flugsicherung wie Sektorisierung,
+                  steriles Cockpit und Dual-Channel-Prinzip auf die
+                  Softwareentwicklung und zeigt, wie Teams mit KI-Agenten
+                  produktiv bleiben, ohne mental auszubrennen.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="talk">
+          <img
+            class="talk-image"
+            src="images/code-unter-atemschutz.webp"
+            alt="Title slide of the talk Code Under Fire"
+          />
+          <div class="talk-body">
+            <div class="talk-langs">
+              <div class="lang-block">
+                <h3>English</h3>
+                <h2>Code Under Fire</h2>
+                <p class="subtitle">
+                  What software teams can learn from the fire department about
+                  leadership, resilience and incident management
+                </p>
+                <p>
+                  Firefighters make life-critical decisions under extreme
+                  stress, using principles that software teams can learn a great
+                  deal from during incidents. This talk translates concepts like
+                  projecting calm, leading through goals rather than commands,
+                  and favoring radical simplicity under stress into software
+                  incident management.
+                </p>
+              </div>
+              <div class="lang-block">
+                <h3>Deutsch</h3>
+                <h2>Code unter Atemschutz</h2>
+                <p class="subtitle">
+                  Was Software-Teams von der Feuerwehr über Führung, Resilienz
+                  und Incident Management lernen können
+                </p>
+                <p>
+                  Feuerwehrleute treffen unter extremem Stress lebenswichtige
+                  Entscheidungen, nach Prinzipien, von denen Software-Teams im
+                  Incident-Fall viel lernen können. Der Vortrag überträgt
+                  Konzepte wie Ruhe ausstrahlen, Führung über Ziele statt
+                  Befehle und radikale Einfachheit unter Stress auf das Incident
+                  Management in der Softwareentwicklung.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="talk">
+          <img
+            class="talk-image"
+            src="images/accessibility-matters.webp"
+            alt="Title slide of the talk Accessibility Matters"
+          />
+          <div class="talk-body">
+            <div class="talk-langs">
+              <div class="lang-block">
+                <h3>English</h3>
+                <h2>Accessibility Matters</h2>
+                <p>
+                  Accessibility affects more people than most assume, and nearly
+                  every website has automatically detectable accessibility
+                  issues. This talk explains what disability really means
+                  (permanent, temporary, situational, technological), introduces
+                  the WCAG principles, and shows concrete steps toward building
+                  more accessible products.
+                </p>
+              </div>
+              <div class="lang-block">
+                <h3>Deutsch</h3>
+                <h2>Barrierefreiheit zählt</h2>
+                <p>
+                  Barrierefreiheit betrifft mehr Menschen, als man denkt, und
+                  praktisch jede Website hat automatisch erkennbare Probleme
+                  damit. Der Vortrag erklärt, was Behinderung eigentlich
+                  bedeutet (permanent, temporär, situativ, technologisch), führt
+                  in die WCAG-Prinzipien ein und zeigt konkrete Schritte für
+                  zugänglichere Produkte.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="talk">
+          <img
+            class="talk-image"
+            src="images/allyship.webp"
+            alt="Title slide of the talk Allyship"
+          />
+          <div class="talk-body">
+            <div class="talk-langs">
+              <div class="lang-block">
+                <h3>English</h3>
+                <h2>Allyship</h2>
+                <p class="subtitle">Why we all have to become feminists</p>
+                <p>
+                  Categorization and discrimination are basic human mechanisms
+                  that create in-groups and out-groups. This talk explains why
+                  equality doesn't happen on its own and what it means to
+                  actively practice allyship for feminism and equality, with
+                  concrete steps: recognize your privilege, listen and learn,
+                  support equality, and take a stand.
+                </p>
+              </div>
+              <div class="lang-block">
+                <h3>Deutsch</h3>
+                <h2>Allyship</h2>
+                <p class="subtitle">
+                  Warum wir alle zu Feminist:innen werden müssen
+                </p>
+                <p>
+                  Kategorisierung und Diskriminierung sind menschliche
+                  Grundmechanismen, die In- und Out-Groups schaffen. Der Vortrag
+                  erklärt, warum Gleichberechtigung nicht von allein entsteht,
+                  und was es bedeutet, als Ally aktiv für Feminismus und
+                  Gleichstellung einzutreten, mit konkreten Schritten: eigene
+                  Privilegien erkennen, zuhören, Gleichberechtigung unterstützen
+                  und Haltung zeigen.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="talk">
+          <img
+            class="talk-image"
+            src="images/distributed-authorization.webp"
+            alt="Title slide of the talk Distributed Authorization"
+          />
+          <div class="talk-body">
+            <div class="talk-langs">
+              <div class="lang-block">
+                <h3>English</h3>
+                <h2>Distributed Authorization</h2>
+                <p>
+                  How do you centralize authorization in a microservices
+                  landscape without sharing credentials? This talk walks through
+                  OAuth 2.0 and OpenID Connect, explains the different flows and
+                  access tokens, and offers architectural guidelines for secure,
+                  distributed authorization.
+                </p>
+              </div>
+              <div class="lang-block">
+                <h3>Deutsch</h3>
+                <h2>Verteilte Autorisierung</h2>
+                <p>
+                  Wie zentralisiert man Autorisierung in einer
+                  Microservices-Landschaft, ohne Zugangsdaten zu teilen? Der
+                  Vortrag führt durch OAuth 2.0 und OpenID Connect, erklärt die
+                  verschiedenen Flows und Access Tokens und gibt
+                  architektonische Leitlinien für sicheres, verteiltes
+                  Berechtigungsmanagement.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="talk">
+          <img
+            class="talk-image"
+            src="images/no-mocks-no-problem.webp"
+            alt="Title slide of the talk No Mocks? No Problem!"
+          />
+          <div class="talk-body">
+            <div class="talk-langs">
+              <div class="lang-block">
+                <h3>English</h3>
+                <h2>No Mocks? No Problem!</h2>
+                <p>
+                  Heavy mocking makes tests brittle, creates false confidence,
+                  and increases maintenance burden. This talk introduces
+                  sociable tests, a pattern language by James Shore that favors
+                  real implementations over mocks, using nullables and embedded
+                  stubs only at architectural boundaries.
+                </p>
+              </div>
+              <div class="lang-block">
+                <h3>Deutsch</h3>
+                <h2>Keine Mocks? Kein Problem!</h2>
+                <p>
+                  Exzessives Mocking macht Tests brüchig, täuscht Sicherheit vor
+                  und erhöht den Wartungsaufwand. Der Vortrag stellt Sociable
+                  Tests vor, eine Pattern-Sprache nach James Shore, die echte
+                  Implementierungen statt Mocks nutzt und Nullables sowie
+                  Embedded Stubs nur an den Architekturgrenzen einsetzt.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="talk">
+          <img
+            class="talk-image"
+            src="images/12-factor-apps.webp"
+            alt="Title slide of the talk 12-Factor Apps"
+          />
+          <div class="talk-body">
+            <div class="talk-langs">
+              <div class="lang-block">
+                <h3>English</h3>
+                <h2>12-Factor Apps</h2>
+                <p>
+                  The Twelve Factors are a collection of best practices for
+                  building software-as-a-service applications, covering
+                  everything from codebase and configuration to backing
+                  services, logs, and admin processes. This talk walks through
+                  all twelve factors and shows how they make architecture and
+                  deployment more robust and portable.
+                </p>
+              </div>
+              <div class="lang-block">
+                <h3>Deutsch</h3>
+                <h2>12-Faktor-Apps</h2>
+                <p>
+                  Die Zwölf Faktoren sind eine Sammlung bewährter Praktiken für
+                  Software-as-a-Service-Anwendungen, von der Codebasis über
+                  Konfiguration und Backing Services bis zu Logs und
+                  Admin-Prozessen. Der Vortrag stellt alle zwölf Faktoren vor
+                  und zeigt, wie sie Architektur und Deployment robuster und
+                  portabler machen.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <footer>
+        <div class="footer-langs">
+          <p>
+            Interested in having me speak at your event?
+            <a href="mailto:philipp@jardas.de">Get in touch</a>.
+          </p>
+          <p>
+            Interesse an einem Vortrag bei eurer Veranstaltung?
+            <a href="mailto:philipp@jardas.de">Meldet euch gern</a>.
+          </p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
