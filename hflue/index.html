@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Feuerwehrleistungsübung Quiz</title>
+<style>
+  :root { --bg:#faf8f5; --fg:#1d1d1f; --muted:#6b6b70; --accent:#c8321e; --line:#dcd8d2; --card:#fff; --ok:#1f7a3d; --bad:#b3261e; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#161515; --fg:#eeeae4; --muted:#a09b94; --accent:#ee6a55; --line:#3a3836; --card:#201f1e; --ok:#5cc47f; --bad:#ff8a7e; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:17px/1.5 system-ui, sans-serif; }
+  main { max-width:680px; margin:0 auto; padding:24px 16px 48px; }
+  h1 { font-size:1.7rem; line-height:1.2; margin:0 0 16px; }
+  h2 { font-size:1.25rem; line-height:1.35; margin:8px 0 16px; }
+  p { margin:0 0 14px; }
+  .muted { color:var(--muted); font-size:.9rem; }
+  button { font:inherit; color:inherit; cursor:pointer; }
+  .answer { display:block; width:100%; text-align:left; background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px 16px; margin:0 0 10px; }
+  .answer:hover, .answer:focus-visible { border-color:var(--accent); outline:none; }
+  .primary { background:var(--accent); color:#fff; border:0; border-radius:10px; padding:14px 24px; font-weight:600; }
+  .bar { height:6px; background:var(--line); border-radius:3px; margin:6px 0 20px; overflow:hidden; }
+  .bar > div { height:100%; background:var(--accent); }
+  .frage-bild { display:block; max-width:260px; max-height:260px; margin:0 0 16px; background:#fff; border-radius:6px; padding:4px; }
+  .score { font-size:2.4rem; font-weight:700; margin:0 0 4px; }
+  .item { background:var(--card); border:1px solid var(--line); border-left:5px solid var(--bad); border-radius:8px; padding:12px 14px; margin:0 0 12px; }
+  .item.ok { border-left-color:var(--ok); }
+  .item .q { font-weight:600; margin:0 0 8px; }
+  .item img { max-width:120px; max-height:120px; display:block; margin:0 0 8px; background:#fff; border-radius:4px; }
+  .item .a { margin:0; font-size:.95rem; }
+  .item .a b { font-weight:600; }
+  .ok .gew { color:var(--ok); } .item:not(.ok) .gew { color:var(--bad); }
+  ul { padding-left:20px; margin:0 0 18px; }
+</style>
+</head>
+<body>
+<main id="app"></main>
+<script src="questions.js"></script>
+<script>
+const N = 15;
+const app = document.getElementById('app');
+let session, idx;
+
+function shuffle(a) {
+  a = a.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function intro() {
+  app.innerHTML = `
+    <h1>Quiz zur Hessischen Feuerwehrleistungsübung</h1>
+    <p>Das Quiz stellt ${N} zufällig ausgewählte Fragen aus dem Antwortkatalog (Stand 1. Januar 2026, ${FRAGEN.length} Fragen). Bei jeder Frage ist genau eine Antwort richtig.</p>
+    <ul>
+      <li>Ein Klick auf eine Antwort führt direkt zur nächsten Frage.</li>
+      <li>Ob die Antwort richtig war, zeigt erst die Auswertung am Ende.</li>
+    </ul>
+    <button class="primary" id="start">Quiz starten</button>`;
+  document.getElementById('start').onclick = start;
+}
+
+function start() {
+  session = shuffle(FRAGEN).slice(0, N).map(q => ({ q, options: q.antworten.map((t, i) => ({ t, i })), gewaehlt: null }));
+  idx = 0;
+  show();
+}
+
+function show() {
+  const { q, options } = session[idx];
+  app.innerHTML = `
+    <div class="muted">Frage ${idx + 1} von ${N}</div>
+    <div class="bar"><div style="width:${idx / N * 100}%"></div></div>
+    ${q.bild ? `<img class="frage-bild" src="${q.bild}" alt="Abbildung zur Frage">` : ''}
+    <h2>${esc(q.frage)}</h2>
+    ${options.map((o, k) => `<button class="answer" data-k="${k}">${esc(o.t)}</button>`).join('')}`;
+  app.querySelectorAll('.answer').forEach(b => b.onclick = () => {
+    session[idx].gewaehlt = options[b.dataset.k].i;
+    if (++idx < N) show(); else result();
+  });
+  window.scrollTo(0, 0);
+}
+
+function result() {
+  const richtig = session.filter(s => s.gewaehlt === s.q.richtig).length;
+  app.innerHTML = `
+    <h1>Auswertung</h1>
+    <p class="score">${richtig} von ${N} richtig</p>
+    <p class="muted">${Math.round(richtig / N * 100)} %</p>
+    ${session.map((s, k) => {
+      const ok = s.gewaehlt === s.q.richtig;
+      return `<div class="item ${ok ? 'ok' : ''}">
+        <p class="q">${k + 1}. ${esc(s.q.frage)}</p>
+        ${s.q.bild ? `<img src="${s.q.bild}" alt="Abbildung zur Frage">` : ''}
+        <p class="a"><b class="gew">Deine Antwort:</b> ${esc(s.q.antworten[s.gewaehlt])}</p>
+        <p class="a"><b>Richtige Antwort:</b> ${esc(s.q.antworten[s.q.richtig])}</p>
+      </div>`;
+    }).join('')}
+    <button class="primary" id="again">Neues Quiz</button>`;
+  document.getElementById('again').onclick = start;
+  window.scrollTo(0, 0);
+}
+
+intro();
+</script>
+</body>
+</html>
