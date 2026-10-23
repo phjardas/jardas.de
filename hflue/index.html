@@ -96,8 +96,10 @@ function result() {
       return `<div class="item ${ok ? 'ok' : ''}">
         <p class="q">${k + 1}. ${esc(s.q.frage)}</p>
         ${s.q.bild ? `<img src="${s.q.bild}" alt="Abbildung zur Frage">` : ''}
-        <p class="a"><b class="gew">Deine Antwort:</b> ${esc(s.q.antworten[s.gewaehlt])}</p>
-        <p class="a"><b>Richtige Antwort:</b> ${esc(s.q.antworten[s.q.richtig])}</p>
+        ${ok ? '' : `
+          <p class="a"><b class="gew">Deine Antwort:</b> ${esc(s.q.antworten[s.gewaehlt])}</p>
+          <p class="a"><b>Richtige Antwort:</b> ${esc(s.q.antworten[s.q.richtig])}</p>
+        `}
       </div>`;
     }).join('')}
     <button class="primary" id="again">Neues Quiz</button>`;
